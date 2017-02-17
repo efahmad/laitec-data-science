@@ -1,0 +1,10 @@
+BASE_URI = 'ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/all/'
+
+
+load_daily_file
+parse_raw_file
+unroll
+fill_nans
+get_obs_by_name
+select_year
+plot_smoothed

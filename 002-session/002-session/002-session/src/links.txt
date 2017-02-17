@@ -1,0 +1,7 @@
+https://ipgp.github.io/scientific_python_cheat_sheet/
+
+ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily
+
+http://www.geographic.org/global_weather/
+
+http://stackoverflow.com/questions/27031554/cross-correlation-of-two-signals
