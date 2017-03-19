@@ -1,0 +1,19 @@
+Travelling salesman problem
+
+Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits
+each city exactly once and returns to the origin city?" It is an NP-hard problem in combinatorial optimization
+
+
+1 - direct solution would be to try all permutations (ordered combinations) : O(n!) ~ 20 cities
+2 - Held–Karp algorithm that solves the problem in time O(n^2*2^n)
+3 - branch-and-bound algorithms, which can be used to process TSPs containing 40–60 cities
+4 - linear programming. Works well for up to 200 cities
+5 - Applegate, et al, (2006) The Traveling Salesman Problem: 85,900 cities, 136 CPU-years
+6 - Heuristic and approximation algorithms
+
+
+
+
+1 - Flops, GFlops, and TFlops
+2 - G-hours
+3 - CPU Hours and CPU Years

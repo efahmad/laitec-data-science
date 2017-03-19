@@ -1,0 +1,67 @@
+all_waypoints = [
+    'University of Tehran, Tehran, Tehran Province',
+    'Sharif University of Technology, Tehran',
+    'Shahid Beheshti University, Daneshjou Boulevard, Tehran, Tehran Province',
+    'Amirkabir University of Technology (Polytechnic), Rasht Street, Tehran, Tehran Province',
+    'Iran University of Science and Technology',
+    'K. N. Toosi University of Technology, Mirdamad Boulevard, Tehran, Tehran Province',
+    'Allameh Tabataba’i University, Tehran, Tehran Province',
+    'imam hossein university',
+    'Imam Sadiq University, Tehran, Tehran Province',
+    'Iran University of Medical Sciences',
+    'Malek Ashtar University of Technology, Shabanlou, Tehran, Tehran Province',
+    'Tarbiat Modares University, Tehran, Tehran Province',
+    'Shahed University, Tehran, Tehran Province',
+    'Kharazmi University, Tehran, Tehran Province',
+    'Alzahra University',
+    'Imam Ali University, Emam Khomeyni Street, Tehran, Tehran Province',
+    'Institute for management and planning studies, Shafei, Tehran, Tehran Province',
+    'Institute for Studies in Theoretical Physics and Mathematics',
+    'Iran Polymer and Petrochemical Institute',
+    'Police University Amin',
+    'shahid rajaee teacher training university'
+]
+
+1 - cached data.tsv in disk
+
+2 - generate
+    waypoint_distances = {}
+    waypoint_durations = {}
+    all_waypoints = set()
+
+3 - GA
+    creator.create('FitnessMulti', base.Fitness, weights=(1.0, -1.0))
+    creator.create('Individual', list, fitness=creator.FitnessMulti)
+
+    toolbox = base.Toolbox()
+    toolbox.register('waypoints', random.sample, all_waypoints, random.randint(2, 21))
+    toolbox.register('individual', tools.initIterate, creator.Individual, toolbox.waypoints)
+    toolbox.register('population', tools.initRepeat, list, toolbox.individual)
+
+    eval_trip(individual)
+    pareto_selection_operator(individuals, k)
+    mutation_operator(individual)
+
+    toolbox.register('evaluate', eval_trip)
+    toolbox.register('mutate', mutation_operator)
+    toolbox.register('select', pareto_selection_operator)
+
+
+    pareto_eq(ind1, ind2)
+
+
+    pop = toolbox.population(n=1000)
+    hof = tools.ParetoFront(similar=pareto_eq)
+    stats = tools.Statistics()
+    stats.register('Progress', lambda x: pbar.update())
+
+    total_gens = 4
+
+    pbar = tqdm(total=total_gens)
+    pop, log = algorithms.eaSimple(pop, toolbox, cxpb=0., mutpb=1.0, ngen=total_gens,
+                               stats=stats, halloffame=hof, verbose=False)
+
+    pbar.close()
+
+
+4 - create_animated_road_trip_map(reversed(hof))
