@@ -17,21 +17,21 @@ def fill_in(formula):
 
 def validate(formula):
     try:
-        return not re.findall(r"\b0", formula) and eval(formula)
+        return not re.search(r"\b0[0-9]", formula) and eval(formula)
     except ArithmeticError:
         return False
 
 
 def test():
-    assert solve("ODD + ODD == EVEN") == '655 + 655 == 1310'
+    assert solve("ODD + ODD == EVEN") == '655 + 655 == 1310' or '855 + 855 == 1710'
     assert solve("CRACK + HACK == ERROR") == '42641 + 9641 == 52282'
     assert solve("SEND + MORE == MONEY") == '9567 + 1085 == 10652'
 
-    return 'Tests were passed'
+    print('Tests were passed')
 
 
 # print(solve("ODD + ODD == EVEN"))
 # print(solve("CRACK + HACK == ERROR"))
 # print(solve("SEND + MORE == MONEY"))
 
-print(test())
+test()
